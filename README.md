@@ -24,7 +24,9 @@ see that exact same value.
 
 ##### credits
 Core cache system from [bigcache](https://github.com/allegro/bigcache)
+
 clusteredBigCache from [clusteredBigCache](https://github.com/nggenius/clusteredBigCache)
+
 Data structures from [emirpasic](https://github.com/emirpasic/gods)
 
 ### LICENSE

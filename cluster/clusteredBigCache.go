@@ -136,9 +136,6 @@ func NewPassiveClient(id string, serverEndpoint string, localPort, pingInterval,
 
 //check configuration values
 func (node *ClusteredBigCache) checkConfig() {
-	if node.config.LocalPort < 1 {
-		panic("Local port can not be zero.")
-	}
 
 	if node.config.ConnectRetries < 1 {
 		node.config.ConnectRetries = 5
@@ -154,6 +151,11 @@ func (node *ClusteredBigCache) setReplicationFactor(rf int) {
 	}
 
 	node.config.ReplicationFactor = rf
+}
+
+// LocalPort get local port
+func (node *ClusteredBigCache) LocalPort() int {
+	return node.config.LocalPort
 }
 
 //Start this Cluster running
@@ -172,6 +174,10 @@ func (node *ClusteredBigCache) Start() error {
 
 	if err := node.bringNodeUp(); err != nil {
 		return err
+	}
+
+	if node.config.LocalPort == 0 {
+		node.config.LocalPort = node.serverEndpoint.Addr().(*net.TCPAddr).Port
 	}
 
 	go node.connectToExistingNodes()
