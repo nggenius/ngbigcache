@@ -1,4 +1,4 @@
-package clusteredBigCache
+package cluster
 
 import "github.com/nggenius/ngbigcache/message"
 
